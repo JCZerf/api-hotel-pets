@@ -13,7 +13,7 @@ app.listen(port, () => {
 })
 
 let dadosPets = [
-    { id: 1, 
+    { id: 1, //Informações para realizar os testes do Get e Put
       nomeTutor: 'José Calos',
       contatoTutor: 35992581913,
       nomePet: 'Julie', 
@@ -45,6 +45,39 @@ app.post('/dadosPets', (req, res) => {
     }
       dadosPets.push(novoPet);
       res.status(201).json(novoPet);
+});
+
+app.put('/dadosPets/:id', (req, res) => {
+    
+    const id = parseInt(req.params.id);
+    const dadosPet = dadosPets.find(t => t.id === id) 
+
+    if (!dadosPet) {
+    return res.status(404).json({ mensagem: 'Cadastro não encontrado!' }); 
+  }  
+       //armazenar os valores de entrada e saída pra evitar erros nos cálculos...
+
+        const dataEntrada = req.body.dataEntrada || dadosPet.dataEntrada;
+        const dataSaida = req.body.dataSaida || dadosPet.dataSaida;
+
+        dadosPet.nomeTutor = req.body.nomeTutor || dadosPet.nomeTutor;
+        dadosPet.contatoTutor = req.body.contatoTutor || dadosPet.contatoTutor;
+        dadosPet.nomePet = req.body.nomePet || dadosPet.nomePet;
+        dadosPet.especie = req.body.especie || dadosPet.especie;
+        dadosPet.raca  = req.body.raca || dadosPet.raca;
+        dadosPet.dataEntrada = dataEntrada;
+        dadosPet.dataSaida = dataSaida;
+        //Armazenando os valores das diarias nas variáveis para evitar erros....
+        dadosPet.diariasAteAgora = calcularDiariasAteAgora(dataEntrada);
+        dadosPet.diariasTotaisPrevistas = calcularDiarias(dataEntrada, dataSaida);
+
+        res.json(dadosPet);
+});
+
+app.delete('/dadosPets/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    dadosPets = dadosPets.filter(t => t.id !== id) //Variação do operador para remover o ID informado
+    res.status(204).send();
 });
 
     function calcularDiarias(dataEntrada, dataSaida) {
