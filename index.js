@@ -12,28 +12,37 @@ app.listen(port, () => {
     console.log(`Servidor online http:/localhost:${port}`); //Fazendo o servidor escutar a porta escolhida
 })
 
-let petsInformacoes = [
+let dadosPets = [
     { id: 1, 
       nomeTutor: 'José Calos',
       contatoTutor: 35992581913,
+      nomePet: 'Julie', 
       especie: 'Gato',
       raca: 'SRD', //Significa sem raça definida
       dataEntrada: '29-05-2025',
       dataSaida: null,
-      diarisAteAgora: 2,
+      diariasAteAgora: 2,
       diariasTotaisPrevistas: 3, 
     }
 ];
 
-app.get('/petsInformacoes', (req, res) => {
-    res.json(petsInformacoes);
+app.get('/dadosPets', (req, res) => {
+    res.json(dadosPets);
 });
 
-app.post('/hotelPets', (req, res) => {
-    const novoTutor = {
-        id: nomeTutor.length + 1,
-        nome: req.body.nome
+app.post('/dadosPets', (req, res) => {
+    const novoPet = {
+        id: dadosPets.length + 1,
+        nomeTutor: req.body.nomeTutor,
+        contatoTutor: req.body.contatoTutor,
+        nomePet: req.body.nomePet,
+        especie: req.body.especie,
+        raca: req.body.raca,
+        dataEntrada: req.body.dataEntrada,
+        dataSaida: req.body.dataSaida,
+        diariasAteAgora: req.body.diariasAteAgora,
+        diariasTotaisPrevistas: req.body.diariasTotaisPrevistas
     }
-      nomeTutor.push(novoTutor);
-      res.status(201).json(novoTutor);
+      dadosPets.push(novoPet);
+      res.status(201).json('Dados do novo pet: ', novoPet);
 });
