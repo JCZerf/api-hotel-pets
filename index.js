@@ -12,12 +12,21 @@ app.listen(port, () => {
     console.log(`Servidor online http:/localhost:${port}`); //Fazendo o servidor escutar a porta escolhida
 })
 
-let nomeTutor = [
-    { id: 1, nome: 'José Calos'}
+let petsInformacoes = [
+    { id: 1, 
+      nomeTutor: 'José Calos',
+      contatoTutor: 35992581913,
+      especie: 'Gato',
+      raca: 'SRD', //Significa sem raça definida
+      dataEntrada: '29-05-2025',
+      dataSaida: null,
+      diarisAteAgora: 2,
+      diariasTotaisPrevistas: 3, 
+    }
 ];
 
-app.get('/hotelPets', (req, res) => {
-    res.json(nomeTutor);
+app.get('/petsInformacoes', (req, res) => {
+    res.json(petsInformacoes);
 });
 
 app.post('/hotelPets', (req, res) => {
