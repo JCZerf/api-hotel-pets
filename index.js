@@ -19,10 +19,10 @@ let dadosPets = [
       nomePet: 'Julie', 
       especie: 'Gato',
       raca: 'SRD', //Significa sem raça definida
-      dataEntrada: '29-05-2025',
-      dataSaida: null,
-      diariasAteAgora: 2,
-      diariasTotaisPrevistas: 3, 
+      dataEntrada: '2025-05-29',
+      dataSaida: '2025-05-30',
+      diariasAteAgora: 1,
+      diariasTotaisPrevistas: 1, 
     }
 ];
 
@@ -40,9 +40,35 @@ app.post('/dadosPets', (req, res) => {
         raca: req.body.raca,
         dataEntrada: req.body.dataEntrada,
         dataSaida: req.body.dataSaida,
-        diariasAteAgora: req.body.diariasAteAgora,
-        diariasTotaisPrevistas: req.body.diariasTotaisPrevistas
+        diariasAteAgora: calcularDiariasAteAgora(req.body.dataEntrada),
+        diariasTotaisPrevistas: calcularDiarias(req.body.dataEntrada, req.body.dataSaida)
     }
       dadosPets.push(novoPet);
-      res.status(201).json('Dados do novo pet: ', novoPet);
+      res.status(201).json(novoPet);
 });
+
+    function calcularDiarias(dataEntrada, dataSaida) {
+        if(!dataSaida) return null;
+        //Calcular as diarias de acordo com a entrada e saida 
+        const entrada = new Date(dataEntrada);
+        const saida = new Date (dataSaida);
+
+        if(saida < entrada) return 0;
+
+        const diferencaHora = saida - entrada;
+        const diferencaDias = Math.floor(diferencaHora / (1000 * 60 * 60 * 24));
+
+        return diferencaDias;
+    }
+
+        function calcularDiariasAteAgora(dataEntrada) {
+        const entrada = new Date(dataEntrada)
+        //Calcular as diarias até agora com a data da entrada e uma função pra data atual...
+        const hoje = new Date();
+        if(entrada > hoje) return 0;
+
+        const diferencaHora = hoje - entrada;
+        const diferencaDias = Math.floor(diferencaHora / (1000 * 60 * 60 * 24));
+
+        return diferencaDias;
+    }
