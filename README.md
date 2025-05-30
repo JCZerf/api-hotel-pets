@@ -57,3 +57,5 @@ Deixei um pet fictício no array só pra facilitar os testes do GET e do PUT.
 
 No PUT, precisei fazer uma modificação leve: se a data de entrada ou saída não vier no corpo da requisição, uso a que já estava lá pra não quebrar os cálculos.
 
+Após finalizar a base do CRUD resolvi estruturar de forma modular para deixar o projeto mais parecido com o que farei num projeto real, o objetivo também é deixar mais claro, organizado e permitir melhorias de forma mais facilitada...
+
