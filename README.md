@@ -40,7 +40,7 @@ Essa API foi criada com o objetivo de gerenciar registro dos animais hospedados 
 
   ## Exemplo do JSON das informações acima
  
- ```json
+ ````json
 {
   "nomeTutor": "José Carlos",
   "contatoTutor": "35992581913",
