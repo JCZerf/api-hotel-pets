@@ -32,7 +32,7 @@ Essa API foi criada com o objetivo de gerenciar registro dos animais hospedados 
   "especie" : "Gato",
   "raca" : "SRD",
   "dataEntrada" : "2025-05-29",
-  "dataSaida" : "2025-06-05"
+  "dataSaida" : "2025-06-05",
 } 
 
 ## Detalhes técnicos
