@@ -20,37 +20,40 @@ async function getPets() {
 }
 //Adicionar os novos pets
 async function addPet(dados) {
-  const novo = {
+  const novoPet = {
     ...dados,
     diariasAteAgora: calcularDiariasAteAgora(dados.dataEntrada),
     diariasTotaisPrevistas: calcularDiarias(dados.dataEntrada, dados.dataSaida)
   };
 
-  const [id] = await db('pets').insert(novo);
-  return { id, ...novo };
+  const [id] = await db('pets').insert(novoPet);
+  return { id, ...novoPet };
 }
 
-function updatePet(id, novosDados) {
-  const pet = pets.find(p => p.id === id);
-  if (!pet) return null;
+// Atualizar os pets existentes no SQL
+async function updatePet(id, novosDados) {
+  const petAtual = await db('pets').where({ id }).first();
+  if (!petAtual) return null;
 
-  const entrada = novosDados.dataEntrada || pet.dataEntrada;
-  const saida = novosDados.dataSaida || pet.dataSaida;
+  const entrada = novosDados.dataEntrada || petAtual.dataEntrada;
+  const saida = novosDados.dataSaida || petAtual.dataSaida;
 
-  Object.assign(pet, {
-    ...pet,
+  const petAtualizado = {
+    ...petAtual,
     ...novosDados,
     dataEntrada: entrada,
     dataSaida: saida,
     diariasAteAgora: calcularDiariasAteAgora(entrada),
     diariasTotaisPrevistas: calcularDiarias(entrada, saida)
-  });
+  };
 
-  return pet;
+  await db('pets').where({ id }).update(petAtualizado);
+  return { id, ...petAtualizado };
 }
 
-function deletePet(id) {
-  pets = pets.filter(p => p.id !== id);
+// Deletar os pets no SQL
+async function deletePet(id) {
+  await db('pets').where({ id }).del();
 }
 
 module.exports = { getPets, addPet, updatePet, deletePet };

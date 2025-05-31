@@ -19,18 +19,27 @@ const adicionarPet = async (req, res) => {
     } 
 };
     
-
-const atualizarPet = (req, res) => {
-  const { id } = req.params;
-  const atualizado = petService.updatePet(parseInt(id), req.body);
-  if (!atualizado) return res.status(404).json({ mensagem: 'Cadastro não encontrado!' });
-  res.json(atualizado);
+const atualizarPet = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const atualizado = await petService.updatePet(parseInt(id), req.body);
+    if (!atualizado) {
+      return res.status(404).json({ mensagem: 'Cadastro não encontrado!' });
+    }
+    res.json(atualizado);
+  } catch (error) {
+    res.status(500).json({ erro: 'Erro ao tentar atualizar o pet.' });
+  }
 };
 
-const deletarPet = (req, res) => {
-  const { id } = req.params;
-  petService.deletePet(parseInt(id));
-  res.status(204).send();
+const deletarPet = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await petService.deletePet(parseInt(id));
+    res.status(204).send(); 
+  } catch (error) {
+    res.status(500).json({ erro: 'Erro ao tentar deletar o pet.' });
+  }
 };
 
 module.exports = {
