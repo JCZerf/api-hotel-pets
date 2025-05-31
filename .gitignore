@@ -1,0 +1,26 @@
+# Node modules
+node_modules/
+
+# Banco de dados SQLite
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+
+# Arquivos de configuração do SQLite local
+database/*.db
+
+# Logs
+*.log
+
+# Variáveis de ambiente
+.env
+
+# Cache do editor
+.vscode/
+*.swp
+*.swo
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
