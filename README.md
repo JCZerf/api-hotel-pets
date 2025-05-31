@@ -24,7 +24,7 @@ Essa API foi criada com o objetivo de gerenciar registro dos animais hospedados 
 
 ## Exemplo do JSON das informações acima
  
-  ````json 
+  ```json 
  {
   "nomeTutor" : "José Carlos",
   "contatoTutor" : "35992581913",
@@ -33,7 +33,7 @@ Essa API foi criada com o objetivo de gerenciar registro dos animais hospedados 
   "raca" : "SRD",
   "dataEntrada" : "2025-05-29",
   "dataSaida" : "2025-06-05"
-} ````
+} ´´´
 
 ## Detalhes técnicos
 
