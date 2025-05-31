@@ -26,7 +26,8 @@ Essa API foi criada com o objetivo de gerenciar registro dos animais hospedados 
 
 	
  
-  ```json {"nomeTutor" : "José Carlos",
+  ```json
+  {"nomeTutor" : "José Carlos",
 	"contatoTutor" : "35992581913",
 	"nomePet" : "Julie",
 	"especie" : "Gato",
