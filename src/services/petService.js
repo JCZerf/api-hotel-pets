@@ -1,17 +1,4 @@
-let pets = [
-  {
-    id: 1,
-    nomeTutor: 'José Carlos',
-    contatoTutor: 35992581913,
-    nomePet: 'Julie',
-    especie: 'Gato',
-    raca: 'SRD',
-    dataEntrada: '2025-05-29',
-    dataSaida: '2025-05-30',
-    diariasAteAgora: 1,
-    diariasTotaisPrevistas: 1,
-  }
-];
+const db = require('../database/db');
 
 function calcularDiarias(entrada, saida) {
   if (!saida) return null;
@@ -27,9 +14,9 @@ function calcularDiariasAteAgora(entrada) {
   if (dataEntrada > hoje) return 0;
   return Math.floor((hoje - dataEntrada) / (1000 * 60 * 60 * 24));
 }
-
-function getPets() {
-  return pets;
+//Primeira implementação com get, para testar e validar as modificações...
+async function getPets() {
+  return await db('pets').select('*');
 }
 
 function addPet(dados) {

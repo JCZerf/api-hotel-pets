@@ -1,7 +1,12 @@
-const petService = require('../services/petService');
-
-const listarPets = (req, res) => {
-  res.json(petService.getPets());
+const db = require('../database/db');
+//Refatorando o código para implementação do SQL...
+const listarPets = async (req, res) => {
+  try {
+    const pets = await db('pets').select('*');
+    res.json(pets);
+  } catch (error) {
+    res.status(500).json({mensagem: "Erro ao listar os pets."});
+  }
 };
 
 const adicionarPet = (req, res) => {
