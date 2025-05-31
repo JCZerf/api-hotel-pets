@@ -1,61 +1,53 @@
-# api-hotel-pets
+# API-HOTEL-PETS
 
-API criada pra cadastrar, listar, atualizar e remover os registros dos animais hospedados no Hotel Pets.
+Essa API foi criada com o objetivo de gerenciar registro dos animais hospedados no **Hotel Pets**, com banco de dados **SQLite** integrado.
 
-Funcionalidades
+## Funcionalidades
 
-GET /dadosPets – Lista todos os pets cadastrados.
++ Listar os pets cadastrados (GET ('/dadosPets))
++ Cadastrar novos pets (POST ('/dadosPets))
++ Atualizar pets cadastrados pelo ID (PUT ('/dadosPets/:id))
++ Deletar pet do cadastro pelo ID (DELETE ('/dadosPets/:id))
 
-POST /dadosPets – Cadastra um novo pet com as informações pedidas.
+## Os pets possuem os seguintes dados armazenados
 
-PUT /dadosPets/:id – Atualiza os dados de um pet usando o ID.
++ ID (Gerado automaticamente pelo SQL(Banco de dados))
++ Nome do tutor
++ Contato do tutor
++ Nome do pet
++ Espécie
++ Raça
++ Data de entrada
++ Data de saída
++ Quantidade de diárias já passadas (Calculada de forma automatica)
++ Total previsto de diárias (Calculada de forma automatica)
 
-DELETE /dadosPets/:id – Remove o pet da lista pelo ID.
+## Exemplo do JSON das informações acima
 
+{
+	"nomeTutpr" : "José Carlos",
+	"contatoTutor" : "35992581913",
+	"nomePet" : "Julie",
+	"especie" : "Gato",
+	"raca" : "SRD",
+	"dataEntrada" : "2025-05-29",
+	"dataSaida" : "2025-06-05"
+}
 
-Sobre os Dados
+## Detalhes técnicos
 
-Foi criada uma lista chamada dadosPets, que guarda os pets com os campos que o teste pediu, mais um extra que achei importante: o nome do pet.
++ Construção do projeto realizada com **Node.js** e **Express**
++ Banco de dados com **SQLite**
++ **Knex.js** com query biulder para facilitar as operações no SQL
++ Funções para calcular diárias com base nas datas fornecidas
++ Estrutura modular, separando rotas, controllers e serviços para facitar manutenção
 
-Cada pet tem:
+### Como usar
 
-id
++ Clone o repositório
++ Execute o **npm install** para as dependências
++ Rode as migrations do SQL com **npx knex migrate:lateste** para a criação das tabelas
++ Inicie o servidor com **node index.js**
++ Teste as rotas usando **Insomnia**(Onde meus testes foram realizados), ou similar
 
-nomeTutor
-
-contatoTutor
-
-nomePet (extra)
-
-especie
-
-raca
-
-dataEntrada
-
-dataSaida
-
-diariasAteAgora (calculado automaticamente)
-
-diariasTotaisPrevistas (também calculado)
-
-
-Funções
-
-Usei duas funções simples pra calcular os dias:
-
-calcularDiarias: pega a data de entrada e saída e retorna quantos dias o pet vai ficar.
-
-calcularDiariasAteAgora: pega a data de entrada e conta até a data de hoje.
-
-
-Tudo com new Date() e transformando os milissegundos em dias...
-
-Observações
-
-Deixei um pet fictício no array só pra facilitar os testes do GET e do PUT.
-
-No PUT, precisei fazer uma modificação leve: se a data de entrada ou saída não vier no corpo da requisição, uso a que já estava lá pra não quebrar os cálculos.
-
-Após finalizar a base do CRUD resolvi estruturar de forma modular para deixar o projeto mais parecido com o que farei num projeto real, o objetivo também é deixar mais claro, organizado e permitir melhorias de forma mais facilitada...
 
