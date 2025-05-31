@@ -22,19 +22,6 @@ Essa API foi criada com o objetivo de gerenciar registro dos animais hospedados 
 + Quantidade de diárias já passadas (Calculada de forma automatica)
 + Total previsto de diárias (Calculada de forma automatica)
 
-## Exemplo do JSON das informações acima
- 
-  ```json 
- {
-  "nomeTutor" : "José Carlos",
-  "contatoTutor" : "35992581913",
-  "nomePet" : "Julie",
-  "especie" : "Gato",
-  "raca" : "SRD",
-  "dataEntrada" : "2025-05-29",
-  "dataSaida" : "2025-06-05"
-} ´´´
-
 ## Detalhes técnicos
 
 + Construção do projeto realizada com **Node.js** e **Express**
@@ -50,5 +37,18 @@ Essa API foi criada com o objetivo de gerenciar registro dos animais hospedados 
 + Rode as migrations do SQL com **npx knex migrate:lateste** para a criação das tabelas
 + Inicie o servidor com **node index.js**
 + Teste as rotas usando **Insomnia**(Onde meus testes foram realizados), ou similar
+
+  ## Exemplo do JSON das informações acima
+ 
+ ```json
+{
+  "nomeTutor": "José Carlos",
+  "contatoTutor": "35992581913",
+  "nomePet": "Julie",
+  "especie": "Gato",
+  "raca": "SRD",
+  "dataEntrada": "2025-05-29",
+  "dataSaida": "2025-06-05"
+}
 
 
