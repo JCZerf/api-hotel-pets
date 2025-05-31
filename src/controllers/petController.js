@@ -1,4 +1,5 @@
 const db = require('../database/db');
+const petService = require('../services/petService');
 //Refatorando o código para implementação do SQL...
 const listarPets = async (req, res) => {
   try {
@@ -7,12 +8,17 @@ const listarPets = async (req, res) => {
   } catch (error) {
     res.status(500).json({mensagem: "Erro ao listar os pets."});
   }
-};
+}
 
-const adicionarPet = (req, res) => {
-  const novoPet = petService.addPet(req.body);
-  res.status(201).json(novoPet);
+const adicionarPet = async (req, res) => {
+    try {
+      const novoPet = await petService.addPet(req.body);
+      res.status(201).json(novoPet);
+    } catch (error) {
+      res.status(500).json({error: 'Erro ao realizar o cadastro do pet'});
+    } 
 };
+    
 
 const atualizarPet = (req, res) => {
   const { id } = req.params;

@@ -14,20 +14,20 @@ function calcularDiariasAteAgora(entrada) {
   if (dataEntrada > hoje) return 0;
   return Math.floor((hoje - dataEntrada) / (1000 * 60 * 60 * 24));
 }
-//Primeira implementação com get, para testar e validar as modificações...
+//Buscar os pets registrados
 async function getPets() {
   return await db('pets').select('*');
 }
-
-function addPet(dados) {
+//Adicionar os novos pets
+async function addPet(dados) {
   const novo = {
-    id: pets.length + 1,
     ...dados,
     diariasAteAgora: calcularDiariasAteAgora(dados.dataEntrada),
     diariasTotaisPrevistas: calcularDiarias(dados.dataEntrada, dados.dataSaida)
   };
-  pets.push(novo);
-  return novo;
+
+  const [id] = await db('pets').insert(novo);
+  return { id, ...novo };
 }
 
 function updatePet(id, novosDados) {
