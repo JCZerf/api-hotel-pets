@@ -8,6 +8,8 @@ Essa API foi criada com o objetivo de gerenciar registro dos animais hospedados 
 + Cadastrar novos pets (POST ('/dadosPets))
 + Atualizar pets cadastrados pelo ID (PUT ('/dadosPets/:id))
 + Deletar pet do cadastro pelo ID (DELETE ('/dadosPets/:id))
++ Cálculo automático das diárias passadas e total previsto de diárias
++ Verificação dos campos nos métodos (POST) e (PUT)
 
 ## Os pets possuem os seguintes dados armazenados
 
