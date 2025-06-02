@@ -58,13 +58,12 @@ Essa API foi criada com o objetivo de gerenciar registro dos animais hospedados 
 
 ## 🎥 Apresentação do Projeto
 
-O projeto foi desenvolvido como parte de um teste técnico.
+Este repositório foi desenvolvido como parte de um teste técnico para a empresa **Pluritech**, com foco na construção de uma API RESTful utilizando **Node.js**, **Express** e **SQLite**.
 
-📌 Veja a apresentação da API (Node.js):  
-[🔗 Clique aqui para assistir o vídeo]()
+📌 **Apresentação da API (Back-end - Node.js):**  
+[🔗 Clique aqui para assistir no YouTube](https://youtu.be/rcMRmQym-RU)
 
-A aplicação front-end desenvolvida em Flutter será apresentada em um segundo vídeo.
-
+🛠 A aplicação **mobile Flutter** (Front-end) será demonstrada em um segundo vídeo, a ser disponibilizado em breve.
 
 
 
