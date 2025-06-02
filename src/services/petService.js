@@ -63,19 +63,43 @@ async function addPet(dados) {
 
 // Atualizar os pets existentes no SQL
 async function updatePet(id, novosDados) {
+
+  const {
+    nomeTutor,
+    contatoTutor,
+    nomePet,
+    especie,
+    raca,
+    dataEntrada,
+    dataSaida
+  } = novosDados;
+
+  if(
+    !nomeTutor ||
+    !contatoTutor ||
+    !nomePet ||
+    !especie ||
+    !raca ||
+    !dataEntrada ||
+    !dataSaida 
+  ) {
+    throw new Error('Todos os campos devem ser preenchidos.');
+  }
+
+
   const petAtual = await db('pets').where({ id }).first();
   if (!petAtual) return null;
 
-  const entrada = novosDados.dataEntrada || petAtual.dataEntrada;
-  const saida = novosDados.dataSaida || petAtual.dataSaida;
-
   const petAtualizado = {
-    ...petAtual,
-    ...novosDados,
-    dataEntrada: entrada,
-    dataSaida: saida,
-    diariasAteAgora: calcularDiariasAteAgora(entrada),
-    diariasTotaisPrevistas: calcularDiarias(entrada, saida)
+    nomeTutor: nomeTutor,
+    contatoTutor: contatoTutor,
+    nomePet: nomePet,
+    especie,
+    raca,
+    dataEntrada: dataEntrada,
+    dataSaida: dataSaida,
+    diariasAteAgora: calcularDiariasAteAgora(dataEntrada),
+    diariasTotaisPrevistas: calcularDiarias(dataEntrada, dataSaida)
   };
 
   await db('pets').where({ id }).update(petAtualizado);

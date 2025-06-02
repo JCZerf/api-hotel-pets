@@ -16,21 +16,27 @@ const adicionarPet = async (req, res) => {
       const novoPet = await petService.addPet(req.body);
       res.status(201).json(novoPet);
     } catch (error) {
-      res.status(400).json({ error: error.message });
-    } 
+      if (error.message === 'Todos os campos devem ser preenchidos.') {
+        return res.status(400).json({ erro: error.message });
+      }
+        res.status(500).json({ erro: 'Erro ao tentar atualizar o pet.' });
+    }
 };
     
 const atualizarPet = async (req, res) => {
   try {
     const { id } = req.params;
     const atualizado = await petService.updatePet(parseInt(id), req.body);
-    if (!atualizado) {
-      return res.status(404).json({ mensagem: 'Cadastro não encontrado!' });
-    }
+      if (!atualizado) {
+        return res.status(404).json({ mensagem: 'Cadastro não encontrado!' });
+      }
     res.json(atualizado);
   } catch (error) {
-    res.status(500).json({ erro: 'Erro ao tentar atualizar o pet.' });
-  }
+      if (error.message === 'Todos os campos devem ser preenchidos.') {
+        return res.status(400).json({ erro: error.message });
+      }
+        res.status(500).json({ erro: 'Erro ao tentar atualizar o pet.' });
+    }
 };
 
 const deletarPet = async (req, res) => {
