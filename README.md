@@ -56,5 +56,15 @@ Essa API foi criada com o objetivo de gerenciar registro dos animais hospedados 
 + Inicie o servidor com **node index.js**
 + Teste as rotas usando **Insomnia**(Onde meus testes foram realizados), ou similar
 
+## 🎥 Apresentação do Projeto
+
+O projeto foi desenvolvido como parte de um teste técnico.
+
+📌 Veja a apresentação da API (Node.js):  
+[🔗 Clique aqui para assistir o vídeo]()
+
+A aplicação front-end desenvolvida em Flutter será apresentada em um segundo vídeo.
+
+
 
 
