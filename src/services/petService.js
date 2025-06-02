@@ -20,8 +20,39 @@ async function getPets() {
 }
 //Adicionar os novos pets
 async function addPet(dados) {
+  //implementação de validação de campo simples
+
+  const {
+    nomeTutor,
+    contatoTutor,
+    nomePet,
+    especie,
+    raca,
+    dataEntrada,
+    dataSaida
+  } = dados;
+
+  if(
+    !nomeTutor ||
+    !contatoTutor ||
+    !nomePet ||
+    !especie ||
+    !raca ||
+    !dataEntrada ||
+    !dataSaida 
+  ) {
+    throw new Error('Todos os campos devem ser preenchidos.');
+  }
+
+
   const novoPet = {
-    ...dados,
+    nomeTutor: nomeTutor,
+    contatoTutor: contatoTutor,
+    nomePet: nomePet,
+    especie,
+    raca,
+    dataEntrada: dataEntrada,
+    dataSaida: dataSaida,
     diariasAteAgora: calcularDiariasAteAgora(dados.dataEntrada),
     diariasTotaisPrevistas: calcularDiarias(dados.dataEntrada, dados.dataSaida)
   };

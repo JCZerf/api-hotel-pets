@@ -1,3 +1,4 @@
+
 const db = require('../database/db');
 const petService = require('../services/petService');
 //Refatorando o código para implementação do SQL...
@@ -15,7 +16,7 @@ const adicionarPet = async (req, res) => {
       const novoPet = await petService.addPet(req.body);
       res.status(201).json(novoPet);
     } catch (error) {
-      res.status(500).json({error: 'Erro ao realizar o cadastro do pet'});
+      res.status(400).json({ error: error.message });
     } 
 };
     
