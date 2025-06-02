@@ -63,7 +63,7 @@ Este repositório foi desenvolvido como parte de um teste técnico para a empres
 📌 **Apresentação da API (Back-end - Node.js):**  
 [🔗 Clique aqui para assistir no YouTube](https://youtu.be/rcMRmQym-RU)
 
-🛠 A aplicação **mobile Flutter** (Front-end) será demonstrada em um segundo vídeo, a ser disponibilizado em breve.
+🛠 A aplicação **mobile Flutter** (Front-end) será demonstrada em um segundo vídeo
 
 
 
